@@ -55,7 +55,7 @@ if { $::argc > 0 } {
 set orig_proj_dir "[file normalize "$origin_dir/"]"
 
 # Create project
-create_project arty_scr1 ./arty_scr1 -part xc7a35ticsg324-1L
+create_project arty_scr1 ./arty_scr1 -part xc7s50csga324-1
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
@@ -65,7 +65,7 @@ set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [get_projects arty_scr1]
-set_property "board_part" "digilentinc.com:arty:part0:1.1" $obj
+set_property "board_part" "digilentinc.com:arty-s7-50:part0:1.0" $obj
 set_property "compxlib.activehdl_compiled_library_dir" "$proj_dir/arty_scr1.cache/compile_simlib/activehdl" $obj
 set_property "compxlib.funcsim" "1" $obj
 set_property "compxlib.ies_compiled_library_dir" "$proj_dir/arty_scr1.cache/compile_simlib/ies" $obj
@@ -876,7 +876,7 @@ set_property "xsim.wdb" "" $obj
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-  create_run -name synth_1 -part xc7a35ticsg324-1L -flow {Vivado Synthesis 2018} -strategy "Flow_PerfOptimized_high" -constrset constrs_1
+  create_run -name synth_1 -part xc7s50csga324-1 -flow {Vivado Synthesis 2018} -strategy "Flow_PerfOptimized_high" -constrset constrs_1
 } else {
   set_property strategy "Flow_PerfOptimized_high" [get_runs synth_1]
   set_property flow "Vivado Synthesis 2018" [get_runs synth_1]
@@ -920,7 +920,7 @@ current_run -synthesis [get_runs synth_1]
 
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-  create_run -name impl_1 -part xc7a35ticsg324-1L -flow {Vivado Implementation 2018} -strategy "Performance_WLBlockPlacement" -constrset constrs_2 -parent_run synth_1
+  create_run -name impl_1 -part xc7s50csga324-1 -flow {Vivado Implementation 2018} -strategy "Performance_WLBlockPlacement" -constrset constrs_2 -parent_run synth_1
 } else {
   set_property strategy "Performance_WLBlockPlacement" [get_runs impl_1]
   set_property flow "Vivado Implementation 2018" [get_runs impl_1]

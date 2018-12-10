@@ -20,10 +20,10 @@ module arty_scr1_top (
     // === RESET ===========================================
     input  logic                    RESETn,
     // === LEDs ============================================
-    output logic    [ 3:0]          LEDR,
-    output logic    [ 3:0]          LEDG,
-    output logic    [ 3:0]          LEDB,
-    output logic    [ 7:4]          LED,
+    output logic    [ 1:0]          LEDR,
+    output logic    [ 1:0]          LEDG,
+    output logic    [ 1:0]          LEDB,
+    output logic    [ 5:2]          LED,
     // === Buttons =========================================
     input  logic    [ 3:0]          BTN,
     // === PMOD D ==========================================
@@ -297,12 +297,12 @@ assign FTDI_RXD         = uart_txd;
 //==========================================================
 // LEDs
 //==========================================================
-assign LED[5:4]         = pio_led;
-assign LED[6]           = ~hard_rst_n;
-assign LED[7]           = heartbeat;
-assign LEDR             = {pio_led_rgb[11], pio_led_rgb[8], pio_led_rgb[5], pio_led_rgb[2]};
-assign LEDG             = {pio_led_rgb[10], pio_led_rgb[7], pio_led_rgb[4], pio_led_rgb[1]};
-assign LEDB             = {pio_led_rgb[ 9], pio_led_rgb[6], pio_led_rgb[3], pio_led_rgb[0]};
+assign LED[3:2]         = pio_led;
+assign LED[4]           = ~hard_rst_n;
+assign LED[5]           = heartbeat;
+assign LEDR             = {pio_led_rgb[5], pio_led_rgb[2]};
+assign LEDG             = {pio_led_rgb[4], pio_led_rgb[1]};
+assign LEDB             = {pio_led_rgb[3], pio_led_rgb[0]};
 
 //==========================================================
 // DIP Switch
